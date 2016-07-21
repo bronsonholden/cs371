@@ -1,0 +1,29 @@
+Final Project: Post-Processing
+==============================
+
+In this project I implement some common forms of post-processing seen in
+video games and graphics using OpenGL shaders. The sample program allows
+users to view post-processing methods separately or mix and match them to
+create interesting effects.
+
+Post-processing uses a Framebuffer Object (FBO) to store the result of
+the primary render pass in a designated Framebuffer Attachment (FBA).
+An additional FBA is used in post-processing; the first is sampled from in a
+post-processing shader, and the result is output into the second texture.
+For additional passes, the source and destination switch; the second
+attachment is sampled, and the first is used for the result. This continues
+until all post-processing stages are complete, and the final result is then
+blitted to the screen, displaying the result of the full render pass.
+
+Post-processing can be very expensive, since it requires sampling and
+executing the fragment shader for every single pixel on the screen. Combining
+multiple post-processing passes into one does not work well, since the
+pixel being sampled might drastically change color in a future execution
+of the fragment shader, causing easily visible artifacts.
+
+Some examples of Post-Processing (Not necessarily implemented here):
+- Radial Blur
+- Motion Blur
+- Negative
+- Greyscale
+- HDR Bloom
